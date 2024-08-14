@@ -26,18 +26,16 @@ st.title("WTF is Bootstrapping?!?: An Interactive Demonstration")
 st.write("""
 **WTF is Bootstrapping: An Interactive Exploration**
 
-Ever found bootstrapping in statistics a bit elusive? You're not alone! This app is designed to turn that complexity into clarity with hands-on visualizations and simulations. Whether you’re new to the concept or looking to solidify your understanding, I am sure you will find this app to be interesting for you.
+Ever found bootstrapping in statistics a bit elusive? You're not alone! This app is designed to turn that complexity into clarity with hands-on visualizations and simulations. Whether you’re new to the concept or looking to solidify your understanding, you’ll find this tool to be a game-changer.
 
 **What’s Bootstrapping All About?**
-         
-Bootstrapping is a key technique for most quantitative research projects. By resampling your data with replacement, you can get insights about your population even when you don’t know its underlying distribution. It’s perfect for when:
+Bootstrapping is like magic for statisticians. By resampling your data with replacement, you can get insights about your population even when you don’t know its underlying distribution. It’s perfect for when:
 
 - The actual distribution of the data from which the sample is drawn is a mystery
 - You’re working with a small sample size
 - You need to calculate confidence intervals for complex statistics
 
 **Why Give Bootstrapping a Try?**
-         
 With bootstrapping, you can:
 
 - Unveil the sampling distribution of almost any statistic
@@ -54,19 +52,15 @@ correlation = st.sidebar.slider("True Correlation", -1.0, 1.0, 0.5, 0.1)
 n_bootstrap = st.sidebar.slider("Number of Bootstrap Samples", 100, 5000, 1000)
 
 # Sidebar Quick Guide
-with st.sidebar.expander("Quick Guide", expanded=True ):
+with st.sidebar.expander("Quick Guide", expanded=True):
     st.write("""
+    ## Quick Guide
     - **Sample Size**: The number of data points in the generated dataset. Smaller sample sizes may show more variability.
     - **True Correlation**: The correlation parameter used to generate the data. Adjust this to see how different correlations affect the results.
     - **Number of Bootstrap Samples**: The number of resamples used in bootstrapping. More samples usually lead to more stable estimates.
+    
+    Feel free to experiment with the settings and explore how bootstrapping works!
     """)
-
-# Sidebar References and GitHub Link
-with st.sidebar.expander("Github",expanded=True):
-    st.markdown("""
-    - This app is open-sourced on GitHub. Feel free to check out the code and contribute:
-    - ⭐ Star the project on GitHub  <iframe src="https://ghbtns.com/github-btn.html?user=Jannik-Hoffmann&repo=your-repo-name&type=star&count=true" width="150" height="20" title="GitHub"></iframe>
-       """)
 
 # Generate data
 data = generate_data(n_samples, correlation)
@@ -91,8 +85,9 @@ st.pyplot(fig)
 # Perform bootstrapping
 bootstrap_correlations = bootstrap_correlation(data, n_bootstrap)
 
-# Create histogram data
+# Create histogram and calculate y-axis range
 hist_data = np.histogram(bootstrap_correlations, bins=30, density=True)
+max_freq = np.max(hist_data[0])
 
 # Plot bootstrap distribution with Plotly for interactivity
 fig = go.Figure()
@@ -100,15 +95,15 @@ fig = go.Figure()
 # Add histogram
 fig.add_trace(go.Histogram(
     x=bootstrap_correlations,
-    histnorm='probability',  # This scales the histogram to display probability density
+    histnorm='probability',
     name='Bootstrap Distribution',
-    nbinsx=30  # Number of bins for the histogram
+    nbinsx=30  # You can adjust the number of bins if needed
 ))
 
 # Add true correlation line
 fig.add_trace(go.Scatter(
-    x=[correlation, correlation],  # X values for the line
-    y=[0, 1],  # Initial y values; Plotly will adjust this range based on histogram
+    x=[correlation, correlation],
+    y=[0, max_freq + 0.2],  # Set y range slightly above the max frequency
     mode='lines',
     line=dict(color='red', width=2, dash='dash'),
     name='True Correlation'
@@ -116,8 +111,8 @@ fig.add_trace(go.Scatter(
 
 # Add mean of bootstrap samples line
 fig.add_trace(go.Scatter(
-    x=[np.mean(bootstrap_correlations), np.mean(bootstrap_correlations)],  # X values for the line
-    y=[0, 0.4],  # Initial y values; Plotly will adjust this range based on histogram
+    x=[np.mean(bootstrap_correlations), np.mean(bootstrap_correlations)],
+    y=[0, max_freq + 0.2],  # Set y range slightly above the max frequency
     mode='lines',
     line=dict(color='green', width=2, dash='dash'),
     name='Bootstrap Mean'
@@ -127,8 +122,9 @@ fig.add_trace(go.Scatter(
 fig.update_layout(
     title=f"Bootstrap Distribution (n_iterations={n_bootstrap})",
     xaxis_title="Correlation",
-    yaxis_title="Density",
-    barmode='overlay'  # Ensures the histogram and lines are overlaid correctly
+    yaxis_title="Frequency",
+    yaxis=dict(range=[0, max_freq + 0.2]),  # Adjust y-axis range
+    barmode='overlay'
 )
 
 # Display the plot
@@ -145,10 +141,4 @@ The red dashed line represents the true correlation we set, while the green dash
 The 95% confidence interval gives us a range where we can be 95% confident that the true correlation lies.
 
 Try adjusting the parameters in the sidebar to see how they affect the bootstrap distribution and confidence interval!
-""")
-st.write("""
-## References
-- Wright, D. B., London, K., & Field, A. P. (2018). Using Bootstrap Estimation and the Plug-in Principle for Clinical Psychology Data. *Journal of Experimental Psychopathology, 2*(2).
-
-- Kmiecik, M. J., & Pongpipat, E. E. (2018). [Bootstrapping and Permutation Testing: A Shiny App](https://mattkmiecik.com/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html). Retrieved from https://mattkmiecik.com/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html
 """)
