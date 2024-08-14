@@ -60,11 +60,16 @@ with st.sidebar.expander("Quick Guide", expanded=True ):
     """)
 
 # Sidebar References and GitHub Link
-with st.sidebar.expander("Github",expanded=True):
+import streamlit as st
+
+# Sidebar with GitHub link and star button
+with st.sidebar.expander("GitHub", expanded=True):
     st.markdown("""
     - This app is open-sourced on GitHub. Feel free to check out the code and contribute:
-    - ⭐ Star the project on GitHub  <iframe src="https://ghbtns.com/github-btn.html?user=Jannik-Hoffmann&repo=Bootstrapping-Streamlit-App&type=star&count=true" width="150" height="20" title="GitHub"></iframe>
-       """)
+    - ⭐ Star the project on GitHub
+      <iframe src="https://ghbtns.com/github-btn.html?user=Jannik-Hoffmann&repo=Bootstrapping-Streamlit-App&type=star&count=true" width="150" height="30" title="GitHub"></iframe>
+    """, unsafe_allow_html=True)
+
 
 # Generate data
 data = generate_data(n_samples, correlation)
