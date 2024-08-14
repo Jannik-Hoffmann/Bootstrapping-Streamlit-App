@@ -19,25 +19,28 @@ def bootstrap_correlation(data, n_iterations):
 def resample(data):
     return data[np.random.randint(len(data), size=len(data))]
 
-st.title("Bootstrapping in Statistics: An Interactive Demonstration")
+st.title("WTF is Bootstrapping?!?: An Interactive Demonstration")
 
 st.write("""
-## Purpose of this App
-This app demonstrates the concept of bootstrapping in statistics through interactive visualizations and simulations.
+**WTF is Bootstrapping: An Interactive Exploration**
 
-## What is Bootstrapping?
-Bootstrapping is a resampling technique used to estimate statistics on a population by sampling a dataset with replacement. It's particularly useful when:
-1. The underlying distribution of the data is unknown
-2. The sample size is small
-3. You want to calculate confidence intervals for complex statistics
+Ever found bootstrapping in statistics a bit elusive? You're not alone! This app is designed to turn that complexity into clarity with hands-on visualizations and simulations. Whether you’re new to the concept or looking to solidify your understanding, you’ll find this tool to be a game-changer.
 
-## Why Use Bootstrapping?
-Bootstrapping allows us to:
-1. Estimate the sampling distribution of almost any statistic
-2. Construct confidence intervals without assuming normality
-3. Test hypotheses when traditional methods are not applicable
+**What’s Bootstrapping All About?**
+Bootstrapping is like magic for statisticians. By resampling your data with replacement, you can get insights about your population even when you don’t know its underlying distribution. It’s perfect for when:
 
-Let's explore bootstrapping through an interactive example!
+- The actual distribution of the data from which the sample is drawn is a mystery
+- You’re working with a small sample size
+- You need to calculate confidence intervals for complex statistics
+
+**Why Give Bootstrapping a Try?**
+With bootstrapping, you can:
+
+- Unveil the sampling distribution of almost any statistic
+- Build confidence intervals without relying on normality
+- Test hypotheses when traditional methods fall short due to the problems described above
+
+Dive into my interactive demo and see bootstrapping in action! Adjust the parameters and watch how the bootstrap distribution and confidence intervals shift. This will be updated in the future and just serves as my first experiment with Streamlit Apps.
 """)
 
 # Input parameters
