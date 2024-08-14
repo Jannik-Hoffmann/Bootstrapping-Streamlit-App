@@ -24,8 +24,6 @@ def resample(data):
 st.title("WTF is Bootstrapping?!?: An Interactive Demonstration")
 
 st.write("""
-**WTF is Bootstrapping: An Interactive Exploration**
-
 Ever found bootstrapping in statistics a bit elusive? You're not alone! This app is designed to turn that complexity into clarity with hands-on visualizations and simulations. Whether you’re new to the concept or looking to solidify your understanding, I am sure you will find this app to be interesting for you.
 
 **What’s Bootstrapping All About?**
@@ -65,7 +63,7 @@ with st.sidebar.expander("Quick Guide", expanded=True ):
 with st.sidebar.expander("Github",expanded=True):
     st.markdown("""
     - This app is open-sourced on GitHub. Feel free to check out the code and contribute:
-    - ⭐ Star the project on GitHub  <iframe src="https://ghbtns.com/github-btn.html?user=Jannik-Hoffmann&repo=your-repo-name&type=star&count=true" width="150" height="20" title="GitHub"></iframe>
+    - ⭐ Star the project on GitHub  <iframe src="https://ghbtns.com/github-btn.html?user=Jannik-Hoffmann&repo=Bootstrapping-Streamlit-App&type=star&count=true" width="150" height="20" title="GitHub"></iframe>
        """)
 
 # Generate data
@@ -102,7 +100,7 @@ fig.add_trace(go.Histogram(
     x=bootstrap_correlations,
     histnorm='probability',  # This scales the histogram to display probability density
     name='Bootstrap Distribution',
-    nbinsx=30  # Number of bins for the histogram
+    nbinsx=20  # Number of bins for the histogram
 ))
 
 # Add true correlation line
@@ -117,7 +115,7 @@ fig.add_trace(go.Scatter(
 # Add mean of bootstrap samples line
 fig.add_trace(go.Scatter(
     x=[np.mean(bootstrap_correlations), np.mean(bootstrap_correlations)],  # X values for the line
-    y=[0, 0.4],  # Initial y values; Plotly will adjust this range based on histogram
+    y=[0, 1],  # Initial y values; Plotly will adjust this range based on histogram
     mode='lines',
     line=dict(color='green', width=2, dash='dash'),
     name='Bootstrap Mean'
@@ -126,9 +124,11 @@ fig.add_trace(go.Scatter(
 # Update layout
 fig.update_layout(
     title=f"Bootstrap Distribution (n_iterations={n_bootstrap})",
-    xaxis_title="Correlation",
-    yaxis_title="Density",
-    barmode='overlay'  # Ensures the histogram and lines are overlaid correctly
+    xaxis_title="Correlation", # X-axis title
+    yaxis_title="Density", # Y-axis title
+    barmode='overlay',  # Ensures the histogram and lines are overlaid correctly
+    yaxis= dict(title_text='Density', range=[0, 0.3]),  # Set y-axis range to 0-1.1
+    showlegend=True
 )
 
 # Display the plot
