@@ -2,7 +2,7 @@
 
 Welcome to the **Bootstrapping Streamlit App**! 🚀
 
-Open it [here](www.wtf-is-bootstrapping.streamlit.app/)!
+Open it [[here](https://wtf-is-bootstrapping.streamlit.app/)
 
 This interactive web application provides a hands-on approach to understanding bootstrapping and permutation testing through dynamic visualizations. Built with **Streamlit** and **Plotly**, this app allows you to explore the concepts of statistical resampling in a user-friendly and visually appealing way.
 
