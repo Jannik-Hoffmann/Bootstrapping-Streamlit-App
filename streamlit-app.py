@@ -30,7 +30,7 @@ Ever found bootstrapping in statistics a bit elusive? You're not alone! This app
          
 Bootstrapping is a key technique for most quantitative research projects. By resampling your data with replacement, you can get insights about your population even when you don’t know its underlying distribution. It’s perfect for when:
 
-- The actual distribution of the data from which the sample is drawn is a mystery
+- The actual distribution of the data from which the sample is drawn is a mystery 👻
 - You’re working with a small sample size
 - You need to calculate confidence intervals for complex statistics
 
@@ -38,8 +38,8 @@ Bootstrapping is a key technique for most quantitative research projects. By res
          
 With bootstrapping, you can:
 
-- Unveil the sampling distribution of almost any statistic
-- Build confidence intervals without relying on normality
+- Get better information about the sampling distribution of almost any statistic
+- Build confidence intervals without relying on normality of the data
 - Test hypotheses when traditional methods fall short due to the problems described above
 
 Dive into my interactive demo and see bootstrapping in action! Adjust the parameters and watch how the bootstrap distribution and confidence intervals shift.
